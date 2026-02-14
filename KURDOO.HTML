@@ -4,106 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>KURDOO SYSTEM PRO MAX</title>
+    <title>KURDOO SYSTEM PRO</title>
     <style>
-        :root { --primary: #007AFF; --bg: #F2F2F7; --card: #FFF; --text: #000; --danger: #FF3B30; --success: #34C759; --warn: #FF9500; }
-        body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 120px; -webkit-tap-highlight-color: transparent; }
+        :root { --primary: #007AFF; --bg: #F2F2F7; --card: #FFF; --danger: #FF3B30; --success: #34C759; }
+        body { font-family: -apple-system, sans-serif; background: var(--bg); margin: 0; padding-bottom: 120px; }
         
         /* HEADER */
-        header { background: #1C1C1E; color: #FFF; padding: 15px; position: sticky; top: 0; z-index: 100; text-align: center; display:flex; justify-content:space-between; align-items:center; }
-        .app-title { font-size: 1.1rem; font-weight: 800; color: #FFD60A; }
-        .session-time { font-family: monospace; font-size: 0.9rem; color: #ccc; }
+        header { background: #1C1C1E; color: #FFF; padding: 15px; position: sticky; top: 0; z-index: 100; text-align: center; display:flex; justify-content:space-between; }
+        .app-title { font-weight: 800; color: #FFD60A; }
 
         /* CONTAINERS */
         .container { padding: 15px; display: none; max-width: 600px; margin: auto; }
         .container.active { display: block; }
         .card { background: var(--card); border-radius: 16px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         
-        /* INPUTS */
-        input, select, textarea { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #C6C6C8; border-radius: 10px; box-sizing: border-box; font-size: 16px; background: #fff; font-family: inherit; }
-        textarea { resize: vertical; min-height: 80px; }
-        label { font-size: 0.8rem; color: #666; font-weight: bold; margin-bottom: 5px; display: block; }
+        input, select, textarea { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #C6C6C8; border-radius: 10px; font-size: 16px; box-sizing: border-box;}
+        label { font-size: 0.85rem; color: #666; font-weight: bold; margin-bottom: 5px; display: block; }
 
         /* BUTTONS */
-        .btn { width: 100%; padding: 14px; border: none; border-radius: 12px; font-weight: 600; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; margin-bottom: 5px; transition: 0.2s; }
-        .btn:active { transform: scale(0.98); }
+        .btn { width: 100%; padding: 14px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 8px; font-size: 1rem;}
         .btn-primary { background: var(--primary); color: white; }
         .btn-danger { background: var(--danger); color: white; }
         .btn-success { background: var(--success); color: white; }
+        .btn-recording { background: #ff0000 !important; animation: pulse 1s infinite; color: white !important; }
         
-        /* EXERCISE GRID */
-        .ex-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-        .ex-btn { height: 90px; border-radius: 12px; border: none; font-weight: bold; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; font-size: 0.9rem; }
-        
-        /* FLASHCARD 3D FLIP */
-        .flashcard-scene { perspective: 1000px; width: 100%; height: 260px; margin-bottom: 20px; cursor: pointer; }
-        .flashcard-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
-        .flashcard-scene.flipped .flashcard-inner { transform: rotateY(180deg); }
-        .fc-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 16px; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 2px solid #ddd; background: white; }
-        .fc-front { color: var(--primary); font-size: 2rem; font-weight: bold; }
-        .fc-back { background: var(--primary); color: white; transform: rotateY(180deg); font-size: 1.8rem; font-weight: bold; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
 
-        /* WORD LIST ITEM */
-        .word-item { display: flex; justify-content: space-between; align-items: center; background: white; padding: 15px; border-radius: 12px; margin-bottom: 8px; border-left: 5px solid #ccc; }
-        .diff-1 { border-left-color: #34C759; } .diff-2 { border-left-color: #007AFF; } 
+        /* EXERCISE GRID */
+        .ex-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .ex-btn { height: 80px; border-radius: 12px; border: none; font-weight: bold; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; font-size: 0.95rem;}
+
+        /* WORD LIST */
+        .word-item { display: flex; justify-content: space-between; align-items: center; background: white; padding: 12px; border-radius: 12px; margin-bottom: 8px; border-left: 6px solid #ccc; }
+        .w-info { flex: 1; cursor: pointer; }
+        .w-btns { display: flex; gap: 5px; }
+        .mini-btn { padding: 10px; border-radius: 8px; border: none; background: #eee; font-size: 1.1rem; cursor: pointer;}
+        .diff-1 { border-left-color: #34C759; } .diff-2 { border-left-color: #007AFF; }
         .diff-3 { border-left-color: #FF9500; } .diff-4 { border-left-color: #FF3B30; }
 
-        /* DIARY SECTION */
-        .diary-box { background: #f8f9fa; border: 1px dashed #ccc; padding: 10px; border-radius: 10px; margin-bottom: 10px; }
-        .rec-timer { font-family: monospace; font-size: 1.2rem; color: var(--danger); font-weight: bold; text-align: center; margin: 5px 0; }
-
-        /* QUIZ */
-        #quizScreen { position: fixed; inset: 0; background: white; z-index: 200; display: none; flex-direction: column; padding: 20px; }
-        .quiz-opt { background: #f0f0f0; padding: 15px; margin-bottom: 10px; border-radius: 10px; text-align: center; font-weight: bold; cursor: pointer; }
+        /* FLASHCARD */
+        .flashcard-scene { perspective: 1000px; width: 100%; height: 260px; margin-bottom: 20px; }
+        .flashcard-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; cursor: pointer; }
+        .flipped { transform: rotateY(180deg); }
+        .fc-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 16px; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 2rem; font-weight: bold; border: 2px solid #ddd; background: #fff; text-align: center; padding: 15px; }
+        .fc-back { background: var(--primary); color: white; transform: rotateY(180deg); font-size: 1.8rem;}
 
         /* NAV */
-        .nav-bar { position: fixed; bottom: 0; width: 100%; background: rgba(255,255,255,0.95); display: flex; justify-content: space-around; padding: 10px 0 25px 0; border-top: 1px solid #ccc; backdrop-filter: blur(5px); }
-        .nav-item { border: none; background: none; color: #999; font-size: 0.7rem; display: flex; flex-direction: column; align-items: center; }
+        .nav-bar { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 10px 0 25px; border-top: 1px solid #ccc; z-index: 150;}
+        .nav-item { border: none; background: none; color: #999; font-size: 0.75rem; display: flex; flex-direction: column; align-items: center; font-weight: bold;}
         .nav-item.active { color: var(--primary); }
-        .nav-icon { font-size: 1.5rem; margin-bottom: 2px; }
+        .nav-icon { font-size: 1.5rem; margin-bottom: 3px; }
 
-        #toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 10px 20px; border-radius: 20px; display: none; z-index: 300; }
+        /* MODAL & QUIZ */
+        #editModal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 300; display: none; align-items: center; justify-content: center; padding: 20px; }
+        #quizScreen { position: fixed; inset: 0; background: white; z-index: 200; display: none; flex-direction: column; padding: 20px; }
+        .quiz-opt { background: #f0f0f0; padding: 18px; margin-bottom: 12px; border-radius: 12px; text-align: center; font-weight: bold; cursor: pointer; font-size: 1.1rem;}
+
+        #toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 12px 24px; border-radius: 30px; display: none; z-index: 400; font-weight: bold;}
     </style>
 </head>
 <body>
 
 <header>
-    <div class="app-title">KURDOO MAX</div>
-    <div class="session-time" id="sessTime">00:00</div>
+    <div class="app-title">KURDOO SYSTEM</div>
+    <div id="sessTimer" style="font-family: monospace; color:#ccc;">00:00</div>
 </header>
 <div id="toast"></div>
 
 <div id="view-list" class="container active">
-    <div class="card" style="border: 2px solid #FFD60A;">
+    <div class="card">
         <label>📅 Tarih Seç:</label>
-        <input type="date" id="mainDate" onchange="dateChanged()">
-        
-        <div class="diary-box">
-            <label>🎙️ Günün Sesli Notu:</label>
-            <div class="rec-timer" id="diaryTimer">00:00</div>
-            <div style="display:flex; gap:10px;">
-                <button class="btn btn-danger" onclick="toggleRec('diary')">Kaydet / Dur</button>
-                <button class="btn btn-primary" id="playDiaryBtn" onclick="playDiary()" disabled>Dinle (Yok)</button>
-            </div>
-        </div>
-        
-        <label>📝 Günün Yazısı:</label>
-        <textarea id="diaryText" placeholder="Bugün neler öğrendin?"></textarea>
-        <button class="btn btn-success" onclick="saveDiary()">Günü Kaydet</button>
+        <input type="date" id="mainDate" onchange="refreshAll()">
     </div>
 
     <div class="card">
-        <h3>Kelime Listesi</h3>
+        <h3 style="margin-top:0">Bugünün Kelimeleri</h3>
         <div id="wordList"></div>
-        <p id="emptyMsg" style="text-align:center; color:#999; display:none;">Bu tarihte kelime yok.</p>
+        <p id="emptyListMsg" style="text-align:center; color:#999; display:none;">Kayıtlı kelime yok.</p>
+    </div>
+
+    <div class="card" style="background: #FFF9C4;">
+        <h3 style="margin-top:0">📓 Günlük Notlarım</h3>
+        <textarea id="diaryText" placeholder="Bugün neler öğrendin veya hissettin?"></textarea>
+        
+        <label>Günün Sesli Notu:</label>
+        <div id="diaryRecDisplay" style="text-align:center; font-weight:bold; color:red; margin-bottom:5px;">00:00</div>
+        <div style="display:flex; gap:10px; margin-bottom:10px;">
+            <button id="diaryRecBtn" class="btn btn-danger" onclick="toggleRec('diary')">🎙️ Kaydet</button>
+            <button id="diaryPlayBtn" class="btn btn-primary" onclick="playAudioBlob(tempDiaryBlob)" disabled>Dinle</button>
+        </div>
+        <button class="btn btn-success" onclick="saveDiary()">Günü Kaydet</button>
     </div>
 </div>
 
 <div id="view-add" class="container">
     <div class="card">
-        <h3>Yeni Kelime</h3>
-        <input type="text" id="addEng" placeholder="İngilizce">
-        <input type="text" id="addTr" placeholder="Türkçe">
+        <h3>Yeni Kelime Ekle</h3>
+        <input type="text" id="addEng" placeholder="İngilizce Kelime (Örn: Apple)">
+        <input type="text" id="addTr" placeholder="Türkçe Anlamı (Örn: Elma)">
+        
+        <label>Zorluk Derecesi:</label>
         <select id="addDiff">
             <option value="1">🟢 Kolay</option>
             <option value="2">🔵 Orta</option>
@@ -111,347 +111,408 @@
             <option value="4">🔴 Çok Zor</option>
         </select>
         
-        <div class="diary-box">
-            <label>Kelime Sesi (Opsiyonel)</label>
-            <div class="rec-timer" id="wordTimer">00:00</div>
-            <button class="btn btn-danger" onclick="toggleRec('word')">🎤 Ses Kaydet</button>
-            <p id="wordRecStatus" style="text-align:center; font-size:0.8rem;">Ses yok</p>
-        </div>
-
-        <button onclick="saveWord()" class="btn btn-primary">LİSTEYE EKLE</button>
+        <label style="margin-top:15px;">Ses Kaydı (İsteğe Bağlı):</label>
+        <div id="wordRecDisplay" style="text-align:center; font-weight:bold; color:red; margin-bottom:5px;">00:00</div>
+        <button id="wordRecBtn" class="btn btn-danger" onclick="toggleRec('word')">🎙️ Ses Kaydet</button>
+        <p id="wordStatus" style="text-align:center; font-size:0.8rem; color:#666;">Ses yok</p>
+        
+        <button class="btn btn-primary" onclick="saveWord()" style="margin-top:10px;">LİSTEYE EKLE</button>
     </div>
 </div>
 
 <div id="view-ex" class="container">
     <div class="card">
-        <h3>Filtreler</h3>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-            <div><label>Başlangıç</label><input type="date" id="exStart"></div>
-            <div><label>Bitiş</label><input type="date" id="exEnd"></div>
+        <h3>Sınav Ayarları</h3>
+        
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+            <div><label>Başlangıç Tarihi</label><input type="date" id="exStart"></div>
+            <div><label>Bitiş Tarihi</label><input type="date" id="exEnd"></div>
         </div>
-        <label>Zorluk</label>
-        <select id="exDiff">
-            <option value="all">Karışık</option>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div>
+                <label>Zorluk Derecesi</label>
+                <select id="exDiff">
+                    <option value="all">Tümü (Karışık)</option>
+                    <option value="1">Sadece Kolay</option>
+                    <option value="2">Sadece Orta</option>
+                    <option value="3">Sadece Zor</option>
+                    <option value="4">Sadece Çok Zor</option>
+                </select>
+            </div>
+            <div>
+                <label>Soru Sayısı</label>
+                <input type="number" id="exCount" value="10" min="1" max="100">
+            </div>
+        </div>
+        
+        <h4 style="margin-bottom:5px; margin-top:15px;">Sınav Modunu Seç:</h4>
+        <div class="ex-grid">
+            <button class="ex-btn" style="background:#5856D6" onclick="startQuiz(1)">📝 Test Modu</button>
+            <button class="ex-btn" style="background:#FF9500" onclick="startQuiz(2)">⌨️ Yazma Modu</button>
+            <button class="ex-btn" style="background:#34C759" onclick="startQuiz(3)">🎧 Dinleme Modu</button>
+            <button class="ex-btn" style="background:#FF2D55" onclick="startQuiz(4)">⚡ Hızlı Kartlar</button>
+        </div>
+    </div>
+</div>
+
+<div id="editModal">
+    <div class="card" style="width:100%; max-width:400px;">
+        <h3>Kelimeyi Düzenle</h3>
+        <label>İngilizce:</label>
+        <input type="text" id="editEng">
+        <label>Türkçe:</label>
+        <input type="text" id="editTr">
+        
+        <label>Zorluk Derecesi:</label>
+        <select id="editDiff">
             <option value="1">Kolay</option>
+            <option value="2">Orta</option>
+            <option value="3">Zor</option>
             <option value="4">Çok Zor</option>
         </select>
-    </div>
 
-    <div class="ex-grid">
-        <button class="ex-btn" style="background:#5856D6" onclick="startQuiz(1)">📝 Test</button>
-        <button class="ex-btn" style="background:#FF9500" onclick="startQuiz(2)">⌨️ Yazma</button>
-        <button class="ex-btn" style="background:#34C759" onclick="startQuiz(3)">🎧 Dinleme</button>
-        <button class="ex-btn" style="background:#FF2D55" onclick="startQuiz(4)">⚡️ Hızlı Kart</button>
-        <button class="ex-btn" style="background:#007AFF; grid-column: span 2;" onclick="startQuiz(5)">🗣️ Kendi Sesimle Çalış</button>
+        <label style="margin-top:10px;">Sesi Yeniden Kaydet:</label>
+        <div id="editRecDisplay" style="text-align:center; font-weight:bold; color:red;">00:00</div>
+        <button id="editRecBtn" class="btn btn-danger" onclick="toggleRec('edit')">🎙️ Kaydı Başlat</button>
+        
+        <div style="display:flex; gap:10px; margin-top:20px;">
+            <button class="btn btn-primary" onclick="updateWord()">Güncelle</button>
+            <button class="btn" style="background:#999; color:white;" onclick="closeEdit()">İptal</button>
+        </div>
     </div>
 </div>
 
 <div id="quizScreen">
-    <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
-        <span id="qCount" style="font-weight:bold;">1/10</span>
-        <button onclick="closeQuiz()" style="background:none; border:none; font-size:1.5rem;">✕</button>
+    <div style="display:flex; justify-content:space-between; margin-bottom:20px; align-items:center;">
+        <span id="qCount" style="font-weight:bold; font-size:1.2rem; color:var(--primary);">1/10</span>
+        <button onclick="closeQuiz()" style="background:none; border:none; font-size:1.8rem; cursor:pointer;">✕</button>
     </div>
     <div id="quizArea" style="flex:1; display:flex; flex-direction:column; justify-content:center;"></div>
 </div>
 
 <nav class="nav-bar">
-    <button class="nav-item active" onclick="nav('list', this)"><span class="nav-icon">📅</span>Günlük & Liste</button>
+    <button class="nav-item active" onclick="nav('list', this)"><span class="nav-icon">📚</span>Liste</button>
     <button class="nav-item" onclick="nav('add', this)"><span class="nav-icon">➕</span>Ekle</button>
     <button class="nav-item" onclick="nav('ex', this)"><span class="nav-icon">🎯</span>Egzersiz</button>
 </nav>
 
 <script>
-    // --- 1. SİSTEM & DB ---
-    let db;
-    let sessionSec = 0;
-    setInterval(() => { sessionSec++; document.getElementById('sessTime').innerText = new Date(sessionSec * 1000).toISOString().substr(14, 5); }, 1000);
+    let db, recorder, chunks = [], tempWordBlob, tempDiaryBlob, tempEditBlob, recInterval, currentEditId;
+    let qData = [], qIdx = 0, qMode = 0;
 
-    const DB_REQ = indexedDB.open("KurdooSystemPro_V5", 1); // Versiyon değişti
-    DB_REQ.onupgradeneeded = e => {
+    // OTURUM SÜRESİ
+    let sSec = 0; setInterval(() => { sSec++; document.getElementById('sessTimer').innerText = new Date(sSec*1000).toISOString().substr(14,5); }, 1000);
+
+    // DB BAŞLAT
+    const req = indexedDB.open("KurdooSystemV7", 1);
+    req.onupgradeneeded = e => {
         db = e.target.result;
-        if(!db.objectStoreNames.contains('words')) {
-            const ws = db.createObjectStore("words", { keyPath: "id" });
-            ws.createIndex("date", "date");
-        }
-        if(!db.objectStoreNames.contains('diaries')) {
-            db.createObjectStore("diaries", { keyPath: "date" }); // Tarih anahtar olacak
-        }
+        db.createObjectStore("words", {keyPath: "id"}).createIndex("date", "date");
+        db.createObjectStore("diaries", {keyPath: "date"});
     };
-    DB_REQ.onsuccess = e => { db = e.target.result; initDates(); };
+    req.onsuccess = e => { db = e.target.result; init(); };
 
-    function initDates() {
+    function init() {
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('mainDate').value = today;
         document.getElementById('exEnd').value = today;
-        const past = new Date(); past.setDate(past.getDate()-30);
+        
+        const past = new Date(); past.setMonth(past.getMonth() - 1);
         document.getElementById('exStart').value = past.toISOString().split('T')[0];
-        dateChanged();
+        
+        refreshAll();
     }
 
-    // --- 2. SES KAYIT SİSTEMİ (ORTAK) ---
-    let recorder, chunks=[], tempWordBlob=null, tempDiaryBlob=null, recInterval;
-    
-    async function toggleRec(type) {
+    // İNGİLİZCE DOĞRU TELAFFUZ (AKSANI AMERİKAN YAP)
+    function speakEnglish(text) {
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'en-US'; // Sadece İngilizce (Amerikan) aksanı kullan
+        utter.rate = 0.9; // Biraz daha net anlaşılması için hızı hafif düşürdük
+        speechSynthesis.speak(utter);
+    }
+
+    // SES KAYIT MANTIĞI
+    async function toggleRec(mode) {
+        const btn = document.getElementById(mode + 'RecBtn');
+        const display = document.getElementById(mode + 'RecDisplay');
+
         if(recorder && recorder.state === 'recording') {
             recorder.stop();
+            btn.classList.remove('btn-recording');
+            btn.innerText = "🎙️ Kaydı Başlat";
+            clearInterval(recInterval);
             return;
         }
+
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
             recorder = new MediaRecorder(stream);
             chunks = [];
             recorder.ondataavailable = e => chunks.push(e.data);
             recorder.onstart = () => {
+                btn.classList.add('btn-recording');
+                btn.innerText = "🔴 KAYDEDİLİYOR...";
                 let s = 0;
-                const timerEl = document.getElementById(type === 'word' ? 'wordTimer' : 'diaryTimer');
-                recInterval = setInterval(() => { s++; timerEl.innerText = `00:${s.toString().padStart(2,'0')}`; }, 1000);
+                recInterval = setInterval(() => {
+                    s++;
+                    if(display) display.innerText = `00:${s.toString().padStart(2,'0')}`;
+                }, 1000);
             };
             recorder.onstop = () => {
-                clearInterval(recInterval);
-                const blob = new Blob(chunks, { type: 'audio/webm' });
-                stream.getTracks().forEach(t=>t.stop());
-                
-                if(type === 'word') {
-                    tempWordBlob = blob;
-                    document.getElementById('wordRecStatus').innerText = "✅ Ses Hazır";
-                } else {
-                    tempDiaryBlob = blob;
-                    document.getElementById('playDiaryBtn').innerText = "Dinle (Kaydedilmedi)";
-                    document.getElementById('playDiaryBtn').disabled = false;
-                }
+                const blob = new Blob(chunks, {type: 'audio/webm'});
+                if(mode === 'word') { tempWordBlob = blob; document.getElementById('wordStatus').innerText = "✅ Ses Hazır"; }
+                else if(mode === 'diary') { tempDiaryBlob = blob; document.getElementById('diaryPlayBtn').disabled = false; }
+                else if(mode === 'edit') { tempEditBlob = blob; }
+                stream.getTracks().forEach(t => t.stop());
             };
             recorder.start();
-        } catch(e) { alert("Mikrofon izni gerekli!"); }
-    }
-
-    // --- 3. GÜNLÜK (DIARY) MANTIĞI ---
-    function dateChanged() {
-        loadWords();
-        loadDiary();
-    }
-
-    function saveDiary() {
-        const date = document.getElementById('mainDate').value;
-        const text = document.getElementById('diaryText').value;
-        
-        const tx = db.transaction("diaries", "readwrite");
-        const store = tx.objectStore("diaries");
-        
-        store.get(date).onsuccess = e => {
-            const oldData = e.target.result || {};
-            const newData = {
-                date: date,
-                text: text,
-                audio: tempDiaryBlob ? tempDiaryBlob : oldData.audio // Yeni ses yoksa eskisini koru
-            };
-            store.put(newData);
-        };
-        
-        tx.oncomplete = () => { showToast("Günlük Kaydedildi!"); loadDiary(); };
-    }
-
-    function loadDiary() {
-        const date = document.getElementById('mainDate').value;
-        // Reset UI
-        document.getElementById('diaryText').value = "";
-        document.getElementById('playDiaryBtn').disabled = true;
-        document.getElementById('playDiaryBtn').innerText = "Dinle (Yok)";
-        document.getElementById('diaryTimer').innerText = "00:00";
-        tempDiaryBlob = null;
-
-        db.transaction("diaries", "readonly").objectStore("diaries").get(date).onsuccess = e => {
-            const d = e.target.result;
-            if(d) {
-                document.getElementById('diaryText').value = d.text || "";
-                if(d.audio) {
-                    tempDiaryBlob = d.audio; // Oynatmak için geçici değişkene at
-                    const btn = document.getElementById('playDiaryBtn');
-                    btn.disabled = false;
-                    
-                    // Süreyi öğrenmek için
-                    const aud = new Audio(URL.createObjectURL(d.audio));
-                    aud.onloadedmetadata = () => {
-                        btn.innerText = `Dinle (${Math.ceil(aud.duration)}sn)`;
-                    };
-                }
-            }
-        };
-    }
-
-    function playDiary() {
-        if(tempDiaryBlob) {
-            const aud = new Audio(URL.createObjectURL(tempDiaryBlob));
-            aud.play();
+        } catch(err) {
+            alert("Mikrofon izni gerekli!");
         }
     }
 
-    // --- 4. KELİME CRUD ---
+    // CRUD - KELİME KAYDET
     function saveWord() {
         const eng = document.getElementById('addEng').value;
         const tr = document.getElementById('addTr').value;
-        if(!eng || !tr) return alert("Eksik bilgi!");
-
+        if(!eng || !tr) return showToast("Lütfen kelime ve anlamını girin!");
+        
         const tx = db.transaction("words", "readwrite");
         tx.objectStore("words").add({
             id: Date.now(),
             date: document.getElementById('mainDate').value,
-            eng, tr, 
-            diff: document.getElementById('addDiff').value,
-            audio: tempWordBlob
+            eng, tr, diff: document.getElementById('addDiff').value, audio: tempWordBlob
         });
-        tx.oncomplete = () => {
+        tx.oncomplete = () => { 
             showToast("Kelime Eklendi!");
-            document.getElementById('addEng').value="";
-            document.getElementById('addTr').value="";
-            document.getElementById('wordTimer').innerText="00:00";
-            document.getElementById('wordRecStatus').innerText="Ses yok";
+            document.getElementById('addEng').value = '';
+            document.getElementById('addTr').value = '';
+            document.getElementById('wordRecDisplay').innerText = "00:00";
+            document.getElementById('wordStatus').innerText = "Ses yok";
             tempWordBlob = null;
-            loadWords();
+            refreshAll(); 
         };
     }
+
+    function refreshAll() { loadWords(); loadDiary(); }
 
     function loadWords() {
         const list = document.getElementById('wordList');
         list.innerHTML = "";
         const date = document.getElementById('mainDate').value;
         
-        db.transaction("words", "readonly").objectStore("words").index("date").getAll(date).onsuccess = e => {
+        db.transaction("words").objectStore("words").index("date").getAll(date).onsuccess = e => {
             const res = e.target.result;
-            if(res.length === 0) { document.getElementById('emptyMsg').style.display="block"; return; }
-            document.getElementById('emptyMsg').style.display="none";
-            
+            if(res.length === 0) document.getElementById('emptyListMsg').style.display = 'block';
+            else document.getElementById('emptyListMsg').style.display = 'none';
+
             res.forEach(w => {
-                const d = document.createElement('div');
-                d.className = `word-item diff-${w.diff}`;
-                d.innerHTML = `
-                    <div onclick="speak('${w.eng}')"><b>${w.eng}</b><br><small>${w.tr}</small></div>
-                    <div style="display:flex; gap:5px">
-                        ${w.audio ? `<button class="btn btn-success" style="width:50px" onclick="playW(${w.id}, this)">▶</button>` : ''}
-                        <button class="btn btn-danger" style="width:40px" onclick="delW(${w.id})">🗑</button>
+                const item = document.createElement('div');
+                item.className = `word-item diff-${w.diff}`;
+                item.innerHTML = `
+                    <div class="w-info" onclick="speakEnglish('${w.eng}')">
+                        <b style="font-size:1.1rem">${w.eng}</b><br><small>${w.tr}</small>
+                    </div>
+                    <div class="w-btns">
+                        ${w.audio ? `<button class="mini-btn" onclick="playAudioBlob(this, ${w.id})">🎧</button>` : ''}
+                        <button class="mini-btn" onclick="openEdit(${w.id})">✏️</button>
+                        <button class="mini-btn" style="color:red" onclick="delW(${w.id})">🗑</button>
                     </div>`;
-                list.appendChild(d);
+                list.appendChild(item);
             });
         };
     }
 
-    function playW(id, btn) {
+    // DÜZENLEME (EDİT) İŞLEMLERİ
+    function openEdit(id) {
+        currentEditId = id;
         db.transaction("words").objectStore("words").get(id).onsuccess = e => {
-            const aud = new Audio(URL.createObjectURL(e.target.result.audio));
-            btn.innerText = "⏳";
-            aud.play();
-            aud.ontimeupdate = () => {
-                const left = Math.ceil(aud.duration - aud.currentTime);
-                if(left) btn.innerText = left + "s";
-            };
-            aud.onended = () => btn.innerText = "▶";
+            const w = e.target.result;
+            document.getElementById('editEng').value = w.eng;
+            document.getElementById('editTr').value = w.tr;
+            document.getElementById('editDiff').value = w.diff; // Zorluk derecesini de getir
+            tempEditBlob = w.audio;
+            document.getElementById('editRecDisplay').innerText = "00:00";
+            document.getElementById('editModal').style.display = 'flex';
         };
     }
-    
-    function delW(id) { if(confirm("Sil?")) db.transaction("words","readwrite").objectStore("words").delete(id).onsuccess=loadWords; }
-    function speak(t) { speechSynthesis.speak(new SpeechSynthesisUtterance(t)); }
 
-    // --- 5. EGZERSİZLER ---
-    let qData=[], qIdx=0, qMode=0;
-    
+    function updateWord() {
+        const tx = db.transaction("words", "readwrite");
+        const store = tx.objectStore("words");
+        store.get(currentEditId).onsuccess = e => {
+            const data = e.target.result;
+            data.eng = document.getElementById('editEng').value;
+            data.tr = document.getElementById('editTr').value;
+            data.diff = document.getElementById('editDiff').value; // Zorluk derecesini güncelle
+            data.audio = tempEditBlob;
+            store.put(data);
+        };
+        tx.oncomplete = () => { closeEdit(); showToast("Güncellendi!"); loadWords(); };
+    }
+
+    // GÜNLÜK SİSTEMİ
+    function saveDiary() {
+        const date = document.getElementById('mainDate').value;
+        const tx = db.transaction("diaries", "readwrite");
+        tx.objectStore("diaries").put({
+            date: date,
+            text: document.getElementById('diaryText').value,
+            audio: tempDiaryBlob
+        });
+        tx.oncomplete = () => showToast("Günün Notları Kaydedildi!");
+    }
+
+    function loadDiary() {
+        const date = document.getElementById('mainDate').value;
+        document.getElementById('diaryRecDisplay').innerText = "00:00";
+        db.transaction("diaries").objectStore("diaries").get(date).onsuccess = e => {
+            const d = e.target.result || {text: "", audio: null};
+            document.getElementById('diaryText').value = d.text;
+            tempDiaryBlob = d.audio;
+            document.getElementById('diaryPlayBtn').disabled = !d.audio;
+        };
+    }
+
+    // GELİŞMİŞ EGZERSİZ SİSTEMİ
     function startQuiz(mode) {
         const s = document.getElementById('exStart').value;
         const e = document.getElementById('exEnd').value;
         const diff = document.getElementById('exDiff').value;
+        const count = parseInt(document.getElementById('exCount').value) || 10;
 
-        db.transaction("words", "readonly").objectStore("words").getAll().onsuccess = ev => {
+        db.transaction("words").objectStore("words").getAll().onsuccess = ev => {
+            // Tarih Filtresi
             let all = ev.target.result.filter(w => w.date >= s && w.date <= e);
-            if(diff !== 'all') all = all.filter(w => w.diff === diff);
             
-            // MOD 5: Sadece sesli kelimeler
-            if(mode === 5) all = all.filter(w => w.audio);
+            // Zorluk Filtresi
+            if(diff !== 'all') {
+                all = all.filter(w => w.diff === diff);
+            }
 
-            if(all.length === 0) return alert("Bu kriterde kelime (veya ses kaydı) bulunamadı!");
+            if(all.length === 0) return alert("Seçtiğin tarih ve zorluk aralığında kelime bulunamadı!");
 
+            // İstenen soru sayısı kadar doldur ve karıştır
             qData = [];
-            while(qData.length < 10) qData.push(...all); // Doldur
-            qData = qData.sort(()=>Math.random()-0.5).slice(0, 10);
+            let safe = 0;
+            while(qData.length < count && safe < 50) {
+                qData.push(...all);
+                safe++;
+            }
+            qData = qData.sort(()=>Math.random()-0.5).slice(0, count);
             
             qIdx = 0; qMode = mode;
-            document.getElementById('quizScreen').style.display = "flex";
-            nextQ();
+            document.getElementById('quizScreen').style.display = 'flex';
+            runNextQ();
         };
     }
 
-    function nextQ() {
-        if(qIdx >= qData.length) { document.getElementById('quizArea').innerHTML = "<h1>Bitti! 🎉</h1>"; return; }
+    function runNextQ() {
+        if(qIdx >= qData.length) { 
+            document.getElementById('quizArea').innerHTML = `<h1 style="text-align:center; font-size:3rem;">🎉</h1><h2 style="text-align:center;">Sınav Bitti!</h2><button class="btn btn-primary" onclick="closeQuiz()">Kapat</button>`; 
+            return; 
+        }
+        
         const q = qData[qIdx];
         const area = document.getElementById('quizArea');
-        document.getElementById('qCount').innerText = `${qIdx+1}/${qData.length}`;
+        document.getElementById('qCount').innerText = `Soru: ${qIdx+1} / ${qData.length}`;
         area.innerHTML = "";
 
-        // Şıklar
+        // Şıkları hazırla
         let opts = [q];
         let pool = [...qData].sort(()=>Math.random()-0.5);
-        pool.forEach(p => { if(opts.length<4 && p.id!==q.id) opts.push(p); });
+        pool.forEach(p => { if(opts.length < 4 && p.id !== q.id) opts.push(p); });
         opts.sort(()=>Math.random()-0.5);
 
-        // MOD 1,2,3 (Klasik)
-        if(qMode <= 3) {
-            let title = q.eng;
-            if(qMode === 2) title = q.tr; // Yazma modu için aşağıda override edilecek
-            if(qMode === 3) { // Dinleme
-                title = "Dinle";
-                area.innerHTML = `<button class="btn btn-primary" style="width:80px;height:80px;border-radius:50%;margin:0 auto 20px;" onclick="speak('${q.eng}')">🔊</button>`;
-            } else if (qMode === 1) {
-                area.innerHTML = `<h1 style="text-align:center">${title}</h1>`;
-            }
-
-            if(qMode === 2) { // Yazma
-                 area.innerHTML = `<h2 style="text-align:center">${q.tr}</h2><input id="ansIn" placeholder="İngilizce..."><button class="btn btn-success" onclick="checkTyping('${q.eng}')">Kontrol</button>`;
-            } else {
-                opts.forEach(o => {
-                    let txt = (qMode === 1 || qMode === 3 || qMode === 5) ? o.tr : o.eng;
-                    area.innerHTML += `<div class="quiz-opt" onclick="check(this, '${o.id}','${q.id}')">${txt}</div>`;
-                });
-            }
+        // 1. TEST MODU
+        if(qMode === 1) {
+            area.innerHTML = `<h1 style="text-align:center; font-size:2.5rem; color:var(--primary);">${q.eng}</h1><div style="text-align:center; margin-bottom:20px;">(Türkçesini Seç)</div>`;
+            opts.forEach(o => {
+                const b = document.createElement('div'); b.className = 'quiz-opt'; b.innerText = o.tr;
+                b.onclick = () => {
+                    if(o.id === q.id) { b.style.background = "var(--success)"; b.style.color="white"; setTimeout(()=>{qIdx++; runNextQ()}, 500); }
+                    else { b.style.background = "var(--danger)"; b.style.color="white"; showToast("Yanlış!"); speakEnglish(q.eng); }
+                };
+                area.appendChild(b);
+            });
         }
-        // MOD 4: FLASHCARD (Fix)
+        // 2. YAZMA MODU
+        else if(qMode === 2) {
+            area.innerHTML = `
+                <h2 style="text-align:center; color:#555;">${q.tr}</h2>
+                <p style="text-align:center;">İngilizcesini Yaz:</p>
+                <input type="text" id="typeIn" style="text-align:center; font-size:1.5rem; padding:15px;" autocomplete="off">
+                <button class="btn btn-primary" onclick="checkTyping('${q.eng}')">Kontrol Et</button>
+            `;
+            setTimeout(() => document.getElementById('typeIn').focus(), 100);
+        }
+        // 3. DİNLEME MODU
+        else if(qMode === 3) {
+            area.innerHTML = `
+                <button class="btn btn-primary" style="width:100px; height:100px; border-radius:50%; margin:0 auto 20px; font-size:2rem;" onclick="speakEnglish('${q.eng}')">🔊</button>
+                <p style="text-align:center; margin-bottom:20px;">Duyduğun Kelimenin Türkçesini Seç</p>
+            `;
+            speakEnglish(q.eng); // Soruyu açar açmaz okusun
+            opts.forEach(o => {
+                const b = document.createElement('div'); b.className = 'quiz-opt'; b.innerText = o.tr;
+                b.onclick = () => {
+                    if(o.id === q.id) { b.style.background = "var(--success)"; b.style.color="white"; setTimeout(()=>{qIdx++; runNextQ()}, 500); }
+                    else { b.style.background = "var(--danger)"; b.style.color="white"; showToast("Yanlış!"); }
+                };
+                area.appendChild(b);
+            });
+        }
+        // 4. HIZLI KART (FLASHCARD)
         else if(qMode === 4) {
             area.innerHTML = `
-                <div class="flashcard-scene" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-scene" onclick="this.querySelector('.flashcard-inner').classList.toggle('flipped'); speakEnglish('${q.eng}')">
                     <div class="flashcard-inner">
-                        <div class="fc-face fc-front">${q.eng}<br><span style="font-size:0.8rem; font-weight:normal; margin-top:10px">(Çevir)</span></div>
+                        <div class="fc-face fc-front">${q.eng}<br><span style="font-size:1rem; font-weight:normal; margin-top:10px; color:#666;">(Çevirmek için tıkla)</span></div>
                         <div class="fc-face fc-back">${q.tr}</div>
                     </div>
                 </div>
-                <div style="display:flex; gap:10px">
-                    <button class="btn btn-danger" onclick="qIdx++;nextQ()">❌</button>
-                    <button class="btn btn-success" onclick="qIdx++;nextQ()">✅</button>
-                </div>`;
-        }
-        // MOD 5: BENİM SESİM
-        else if(qMode === 5) {
-            area.innerHTML = `<button class="btn btn-primary" style="width:100px;height:100px;border-radius:50%;margin:0 auto 20px;font-size:3rem" onclick="playW(${q.id}, this)">🗣️</button>
-            <p style="text-align:center">Senin Sesin! Ne demiştin?</p>`;
-             opts.forEach(o => {
-                area.innerHTML += `<div class="quiz-opt" onclick="check(this, '${o.id}','${q.id}')">${o.tr}</div>`;
-            });
+                <div style="display:flex; gap:10px;">
+                    <button class="btn btn-danger" onclick="qIdx++; runNextQ()">Bilmedim ❌</button>
+                    <button class="btn btn-success" onclick="qIdx++; runNextQ()">Bildim ✅</button>
+                </div>
+            `;
         }
     }
 
-    function check(el, a, b) {
-        if(a==b) { el.style.background="#34C759"; setTimeout(()=>{qIdx++;nextQ()},500); }
-        else { el.style.background="#FF3B30"; showToast("Yanlış!"); }
-    }
     function checkTyping(ans) {
-        if(document.getElementById('ansIn').value.toLowerCase().trim() === ans.toLowerCase()) { showToast("Doğru!"); qIdx++; nextQ(); }
-        else showToast("Yanlış!");
+        const val = document.getElementById('typeIn').value.trim().toLowerCase();
+        if(val === ans.toLowerCase()) {
+            showToast("Doğru!"); qIdx++; runNextQ();
+        } else {
+            showToast("Yanlış! Doğrusu: " + ans);
+            document.getElementById('typeIn').value = "";
+        }
     }
 
-    // --- UTILS ---
-    function nav(p, btn) {
-        document.querySelectorAll('.container').forEach(c=>c.classList.remove('active'));
-        document.getElementById('view-'+p).classList.add('active');
+    // YARDIMCI FONKSİYONLAR
+    function playAudioBlob(btnOrBlob, id) {
+        if(id) { // Kelime listesinden geliyorsa DB'den al
+            db.transaction("words").objectStore("words").get(id).onsuccess = e => {
+                if(e.target.result.audio) new Audio(URL.createObjectURL(e.target.result.audio)).play();
+            };
+        } else if(btnOrBlob) { // Günlük sesinden geliyorsa direkt oynat
+            new Audio(URL.createObjectURL(btnOrBlob)).play();
+        }
+    }
+
+    function delW(id) { if(confirm("Silmek istediğine emin misin?")) db.transaction("words","readwrite").objectStore("words").delete(id).onsuccess = loadWords; }
+    
+    function nav(p, btn) { 
+        document.querySelectorAll('.container').forEach(c=>c.classList.remove('active')); 
+        document.getElementById('view-'+p).classList.add('active'); 
         document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
         btn.classList.add('active');
     }
+    
+    function closeEdit() { document.getElementById('editModal').style.display = 'none'; }
+    function closeQuiz() { document.getElementById('quizScreen').style.display = 'none'; }
     function showToast(m) { const t=document.getElementById('toast'); t.innerText=m; t.style.display='block'; setTimeout(()=>t.style.display='none',2000); }
-    function closeQuiz(){ document.getElementById('quizScreen').style.display='none'; }
 </script>
 </body>
 </html>
